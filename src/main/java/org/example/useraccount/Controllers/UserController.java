@@ -31,7 +31,12 @@ public class UserController {
 
     @PutMapping("/{id}")
     public Optional<ReponseDto> updateAUser (@RequestBody UserDto userDto,@PathVariable Long id){
-        return service.updateAUser(userDto,id);
+        return service.updateUserById(userDto,id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUserById(@PathVariable Long id) {
+        service.deleteUserById(id);
     }
 
 }

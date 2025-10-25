@@ -33,7 +33,7 @@ public class UserService {
         return repository.findAll().stream().map(account ->new ReponseDto(account.getUsername(),account.getEmail())).collect(Collectors.toList());
     }
 
-    public Optional<ReponseDto> updateAUser(UserDto userDto, Long id) {
+    public Optional<ReponseDto> updateUserById(UserDto userDto, Long id) {
 
         repository.findById(id).ifPresent(account -> {
             account.setUsername(userDto.getUsername());
@@ -43,5 +43,9 @@ public class UserService {
         });
 
         return repository.findById(id).map(account -> new ReponseDto(account.getUsername(), account.getEmail()));
+    }
+
+    public void deleteUserById(Long id) {
+        repository.deleteById(id);
     }
 }
